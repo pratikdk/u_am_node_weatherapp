@@ -25,7 +25,9 @@ const request = require("request");
 const geocode = (address, callback) => {
     const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address)}.json?access_token=${process.env.MAPBOX_ACCESS_TOKEN}&limit=1`;
 
-    request(url, {json: true}, (error, { body, statusCode }) => {
+    request(url, {json: true}, (error, { body }) => {
+        console.log("DUMP 1 ----- ", error);
+        console.log("DUMP 2 ----- ", body);
         if (error) {
             callback("Unable to connect to mapping service", undefined);
         } else if (body.features.length == 0) {
